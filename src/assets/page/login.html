@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Vue 测试实例 - 菜鸟教程(runoob.com)</title>
+    <script src="js/jquery-1.7.2.js"></script>
+</head>
+<body>
+<div>
+    <p class="greeting-id">The ID is </p>
+    <p class="greeting-content">The content is </p>
+</div>
+
+<script>
+    $(document).ready(function() {
+        var arr = {"schoolNumber":"001","password":"123"};
+        $.ajax({
+            url: "/login",
+            type:"POST",
+            contentType: "application/json;charset=utf-8",
+            data: JSON.stringify(arr),
+            dataType:"json",
+            success: function (data) { //返回json结果
+                alert("success"+data);
+            },
+            error: function (data){
+                alert("error"+data);
+            }
+        }).then(function(data) {
+            $('.greeting-id').append(data.id);
+            $('.greeting-content').append(data.content);
+        });
+    });
+</script>
+</body>
+</html>

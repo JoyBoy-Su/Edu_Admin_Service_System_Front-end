@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link href = "./css/register.css" rel = "stylesheet">
+    <script src="./js/jquery-1.7.2.js"></script>
+    <script src = "./js/session.js"></script>
+    <script src = "./js/register.js"> </script>
+    <script>
+        window.onload = function(){
+            checkSession();
+            if(window.sessionStorage.getItem("type") != "admin"){
+                alert("需要管理员权限！");
+                window.location.href = "index.html";
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="login-header">
+    <img class="logo-img" alt="" src="./picture/fudanlogo.jpg" width="82" height="82">
+</div>
+
+<div class="login-banner">
+
+    <div id="l-content">
+        <span class="login-word">欢迎注册</span>
+    </div>
+
+    <div id="content">
+        <div class="login-form">
+            <div class="login-box">
+                <div class="tit">
+                    <h1>管理员注册用户</h1>
+                    <span class = "instruction">&nbsp;(带*为必填项)&nbsp;</span>
+                    <span class="errormsg"></span>
+                </div>
+                <div class="form" id = "registerForm">
+                    <form action="/index" method="get">
+                        <label>*用户名称：</label>
+                        <input class="itxt" type="text" required placeholder="仅能出现中英文字符" autocomplete="off" tabindex="1" name="username" id="username" onfocus="onFocus('username');">
+                        &nbsp;
+                        <label>*用户身份：</label>
+                        学生 <input class = "status" type = "radio" required name = "type" id = "student" value="student">
+                        老师 <input class = "status" type = "radio" required name = "type" id = "teacher" value="teacher">
+                        <br>
+                        <br>
+                        <label>*学(工)号 :</label>
+                        <input class = "itxt" type="text" required placeholder="请输入学工号" autocomplete="off" tabindex="1" name = "schoolNumber" id = "schoolNumber" onfocus="onFocus('schoolNumber');">
+                        &nbsp;
+                        <label>*身份证号：</label>
+                        <input class = "itxt" type="text" required placeholder="请输入身份证号" autocomplete="off" tabindex="1" name="ID" id = "ID" onfocus="onFocus('ID');">
+                        <br>
+                        <br>
+                        <label>&nbsp;手机号码：</label>
+                        <input class = "itxt" type="text" placeholder="请输入手机号码" autocomplete="off" tabindex="1" name = "telephone" id = "telephone" onfocus="onFocus('telephone');">
+                        &nbsp;
+                        <label>&nbsp;电子邮件：</label>
+                        <input class="itxt" type="text" placeholder="请输入邮箱地址" autocomplete="off" tabindex="1" name="email" id="email" onfocus="onFocus('email');">
+                        <br>
+                        <br>
+                        <input type="button" value="注册" id="sub-btn">
+                        <a href="homepage.html">
+                            <input type = "button" value="返回主页" id = "returnHome">
+                        </a>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

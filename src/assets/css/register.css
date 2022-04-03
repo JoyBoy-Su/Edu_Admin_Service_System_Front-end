@@ -1,0 +1,184 @@
+body {
+    overflow: hidden;
+}
+
+* {
+    margin: 0;
+    font-family: "Georgia", serif;
+    color: #666;
+}
+
+div{
+    margin: auto;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+}
+
+#header {
+    height: 82px;
+    width: 1200px;
+}
+
+#main {
+    height: 460px;
+    width: 1200px;
+    border: 1px black solid;
+    overflow: auto;
+}
+
+#bottom {
+    height: 30px;
+    width: 1200px;
+    text-align: center;
+}
+
+#page-nav{
+    width: 100%;
+    height: 10px;
+    margin: auto;
+
+    text-align: center;
+}
+
+#pn-input {
+    width: 30px;
+    text-align: center;
+}
+
+.img-div{
+    height: 150px;
+    text-align: center;
+}
+
+.logo-img{
+    float: left;
+}
+
+#header div a {
+    text-decoration: none;
+    font-size: 20px;
+}
+
+#header div{
+    float: right;
+    margin-top: 55px;
+}
+
+.book-cond{
+    margin-left: 500px;
+}
+
+.book-cond input{
+    width: 50px;
+    text-align: center;
+}
+
+
+/*登录页面CSS样式  */
+
+#login-header{
+    height: 82px;
+    width: 1200px;
+}
+
+.login-banner{
+    height: 500px;
+    background-color: cornflowerblue;
+}
+
+.login-form{
+    height:350px;
+    width:800px;
+    float: right;
+    margin-right:50px;
+    margin-top: 50px;
+    background-color: #fff;
+}
+
+#content {
+    height: 475px;
+    width: 1200px;
+}
+
+.login-box{
+    margin: 20px;
+    height: 300px;
+    width: 800px;
+}
+
+h1 {
+    font-size: 20px;
+}
+
+.form .itxt {
+    border: 0 none;
+    float: none;
+    font-family: "Georgia", serif;
+    font-size: 14px;
+    height: 18px;
+    line-height: 18px;
+    overflow: hidden;
+    padding: 10px 0 10px 10px;
+    width: 250px;
+    border: 1px #e3e3e3 solid;
+}
+
+.form .status {
+    font-family: "Georgia", serif;
+    height: 18px;
+    overflow: hidden;
+    border: 1px #e3e3e3 solid;
+}
+
+#sub-btn{
+    background-color: cornflowerblue;
+    border: none;
+    color: #fff;
+    width: 360px;
+    height: 40px;
+}
+
+#returnHome{
+    background-color: cornflowerblue;
+    border: none;
+    color: #fff;
+    width: 360px;
+    height: 40px;
+}
+
+#l-content {
+    width: 300px;
+    float: left;
+    margin-top: 150px;
+    margin-left: 100px;
+}
+
+#l-content span {
+    font-size: 60px;
+    color: white;
+}
+
+.tit h1 {
+    float: left;
+    margin-top: 5px;
+}
+
+.tit a {
+    float: right;
+    margin-left: 10px;
+    margin-top: 10px;
+    color: red;
+    text-decoration: none;
+}
+
+.tit .errormsg {
+    /*float: start;*/
+    margin-left: 10px;
+    margin-top: 10px;
+    color: red;
+}
+
+.tit {
+    height: 30px;
+}
