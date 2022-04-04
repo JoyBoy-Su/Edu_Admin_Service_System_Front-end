@@ -1,0 +1,40 @@
+{
+  "userInfo": [
+    {
+      "id": "001",
+      "number": "203021",
+      "password": "abcdefg",
+      "status": "admin"
+    },
+    {
+      "id": "002",
+      "number": "203022",
+      "password": "abcdefg",
+      "status": "student"
+    },
+    {
+      "params": {
+        "id": "003",
+        "number": "203023",
+        "password": "abcdefg",
+        "status": "teacher"
+      },
+      "id": "7hs7w9d"
+    },
+    {
+      "number": "202021",
+      "password": "abcdefg",
+      "id": "WLs7VJy"
+    },
+    {
+      "number": "202020",
+      "password": "abcdefg",
+      "id": "M8is4G1"
+    },
+    {
+      "number": "202020",
+      "password": "abcdefg",
+      "id": "6cYeGVx"
+    }
+  ]
+}

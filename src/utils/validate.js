@@ -1,5 +1,4 @@
-// 定义用到的信息校验函数
-
+// 定义用到的工具类函数
 /**
  * @param {string} str
  * @returns {Boolean}
@@ -10,11 +9,17 @@ export function validSchoolNumber(str) {
     const teacherReg = /^\d{8}$/;
     return studentReg.test(str) || teacherReg.test(str);
 }
-
 /**
  * @param {string} str
  * @returns {Boolean}
  */
 export function validPassward(str) {
-    
+    return true;
 }
+/**
+ * @param {string} path
+ * @returns {Boolean}
+ */
+ export function isExternal(path) {
+    return /^(https?:|mailto:|tel:)/.test(path)
+  }

@@ -1,6 +1,7 @@
 import { Button, Form, FormItem, Input, Option, Select } from 'element-ui';
 import Vue from 'vue';
 import App from './App.vue';
+import router from "./router/index";
 
 Vue.config.productionTip = false;
 Vue.component(Form.name, Form);
@@ -12,5 +13,6 @@ Vue.component(Button.name, Button);
 
 new Vue({
   el : "#app",
-  render: h => h(App)
+  render: h => h(App),
+  router
 });
