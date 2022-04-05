@@ -2,19 +2,30 @@
 const actions = {
     login(context, value) {
         context.commit("LOGIN", value);
+    },
+    logout(context, value) {
+        context.commit("LOGOUT", value);
     }
 };
 const mutations = {
     LOGIN(state, value) {
+        state.name = value.username;
+        state.type = value.type;
         state.schoolNumber = value.schoolNumber;
-        state.status = value.status;
-        state.token = value.token;
+        state.login = true;
+    },
+    LOGOUT(state, value) {
+        state.name = "";
+        state.type = "";
+        state.schoolNumber = "";
+        state.login = false;
     }
 };
 const state = {
+    name : "",
+    type : "",
     schoolNumber : "",
-    status : "",
-    token : ""
+    login : false
 };
 
 export default {

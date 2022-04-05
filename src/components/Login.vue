@@ -9,7 +9,7 @@
     >
       <!-- 表头 -->
       <div class="title-container">
-        <img src="../assets/img/fudanlogo.jpg" id="logo-img" />
+        <img src="../assets/img/logo.jpg" id="logo-img" />
         <h2 id="login-title">统一身份认证</h2>
       </div>
 
@@ -20,6 +20,7 @@
           ref="schoolNumber"
           placeholder="用户名（本人学工号）"
           type="text"
+          prefix-icon="el-icon-user"
           v-model="formInfo.schoolNumber"
         />
       </el-form-item>
@@ -32,6 +33,7 @@
           ref="password"
           placeholder="用户密码"
           type="password"
+          prefix-icon="el-icon-lock"
           v-model="formInfo.password"
           show-password
         />
@@ -45,7 +47,7 @@
 
 <script>
 import login from "../api/user";
-import { validPassward, validSchoolNumber } from "../utils/validate";
+import { validSchoolNumber } from "../utils/validate";
 export default {
   name: "Login",
   data() {
@@ -77,36 +79,27 @@ export default {
       },
     };
   },
-  computed : {
-    schoolNumber() {
-      return this.formInfo.schoolNumber;
-    },
-    password() {
-      this.formInfo.password;
-    }
-  },
   methods: {
     login(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           // 信息校验后通过发送登录请求
-          login({
-            schoolNumber: this.schoolNumber,
-            password: this.password,
-          })
-            .then((response) => {
-              // 在这里判断登录是否成功，成功则保存用户信息，并跳转到主页
-              this.$store.dispatch('user/login', {
-                schoolNumber : this.schoolNumber,
-                status : response.data.status,
-                token : "test_token"
+          login(this.formInfo).then((response) => {
+            // 登录成功，保存用户信息，并跳转到主页
+            if (response.data.success === "1") {
+              this.$store.dispatch("user/login", {
+                type: response.data.type,
+                name: response.data.name,
+                schoolNumber: this.formInfo.schoolNumber,
               });
-              this.$router.push('/');
-            })
-            .catch((err) => {
-              // 请求失败
-              console.log(err);
-            });
+              this.$router.push("/");
+            } else {
+              this.$message.error("密码错误!");
+            }
+          }).catch((err) => {
+            // 请求失败
+            this.$message.error("登录请求失败!");
+          });
         }
       });
     },
@@ -119,7 +112,7 @@ export default {
   min-height: 100%;
   width: 100%;
   overflow: hidden;
-  background: url(../assets/img/fudan.png);
+  background: url(../assets/img/fudan_background.png);
 }
 .login-form {
   position: relative;
@@ -134,7 +127,7 @@ export default {
   float: left;
   width: 288px;
   margin-top: 12px;
-  margin-left: 110px;
+  margin-left: 100px;
   margin-bottom: 20px;
 }
 .el-input {

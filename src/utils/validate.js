@@ -9,17 +9,17 @@ export function validSchoolNumber(str) {
     const teacherReg = /^\d{8}$/;
     return studentReg.test(str) || teacherReg.test(str);
 }
+
 /**
  * @param {string} str
  * @returns {Boolean}
  */
 export function validPassward(str) {
-    return true;
+    var strength = 0;
+    var check = true;
+    if (/\d+/.test(str)) strength++;
+    if (/[a-zA-z]+/.test(str)) strength++;
+    if (/[-_]+/.test(str)) strength++;
+    if (strength < 2) check = false;
+    return check;
 }
-/**
- * @param {string} path
- * @returns {Boolean}
- */
- export function isExternal(path) {
-    return /^(https?:|mailto:|tel:)/.test(path)
-  }

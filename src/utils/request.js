@@ -4,7 +4,7 @@ import axios from "axios";
 const request = axios.create({
     baseURL : "http://localhost:8080/api",
     method : "get",
-    timeout : 500
+    timeout: 500
 });
 
 export default request;
