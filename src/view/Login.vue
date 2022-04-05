@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import request from "../utils/request";
+import login from "../api/user";
 import { validPassward, validSchoolNumber } from "../utils/validate";
 export default {
   name: "Login",
@@ -77,20 +77,31 @@ export default {
       },
     };
   },
+  computed : {
+    schoolNumber() {
+      return this.formInfo.schoolNumber;
+    },
+    password() {
+      this.formInfo.password;
+    }
+  },
   methods: {
     login(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           // 信息校验后通过发送登录请求
-          request
-            .post("userInfo", {
-              number: this.formInfo.schoolNumber,
-              password: this.formInfo.password,
-            })
+          login({
+            schoolNumber: this.schoolNumber,
+            password: this.password,
+          })
             .then((response) => {
-              // 在这里判断登录是否成功，成功进行路由重定向
-              alert("submit!");
-              console.log(response.data);
+              // 在这里判断登录是否成功，成功则保存用户信息，并跳转到主页
+              this.$store.dispatch('user/login', {
+                schoolNumber : this.schoolNumber,
+                status : response.data.status,
+                token : "test_token"
+              });
+              this.$router.push('/');
             })
             .catch((err) => {
               // 请求失败
@@ -117,7 +128,6 @@ export default {
   padding: 160px 35px 0;
   margin: 0 auto;
   overflow: hidden;
-  border: solid;
 }
 .title-container {
   position: relative;

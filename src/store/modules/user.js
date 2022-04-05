@@ -1,18 +1,18 @@
 // 用户的登录信息
 const actions = {
-    storeSession(context, value) {
-        context,commit("STORE_SESSION", value);
+    login(context, value) {
+        context.commit("LOGIN", value);
     }
 };
 const mutations = {
-    STORE_SESSION(state, value) {
-        state.user = value.user;
+    LOGIN(state, value) {
+        state.schoolNumber = value.schoolNumber;
         state.status = value.status;
         state.token = value.token;
     }
 };
 const state = {
-    user : "",
+    schoolNumber : "",
     status : "",
     token : ""
 };
