@@ -57,6 +57,8 @@
 
       <!-- 内容主体展示 -->
       <el-main>
+        <!-- 面包屑导航区 -->
+        <!-- <Breadcrumb></Breadcrumb> -->
         <!-- 路由组件渲染位置 -->
         <router-view></router-view>
       </el-main>
@@ -66,14 +68,17 @@
 
 <script>
 import menuJson from "../assets/json/menu.json";
+import Breadcrumb from "./Breadcrumb"
 
 export default {
   name: "Home",
+
   created() {
     this.menuList = menuJson.admin;
     // menuJson.student
     // menuJson.teacher
   },
+  components : {Breadcrumb},
   data() {
     return {
       // 该用户的菜单栏数据

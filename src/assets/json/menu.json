@@ -35,6 +35,12 @@
                     "name": "注册用户",
                     "icon": "plus",
                     "path": "./register"
+                },
+                {
+                    "id" : "23",
+                    "name": "批量导入",
+                    "icon": "folder-add",
+                    "path": "./registerList"
                 }
             ]
         },

@@ -15,6 +15,7 @@ Vue.prototype.$message = ElementUI.Message;
 new Vue({
   el : "#app",
   render: h => h(App),
+  // 这里仅测试使用
   created() {
     this.$store.state.user.name = "admin1";
     this.$store.state.user.schoolNumber = "203021";

@@ -6,8 +6,10 @@ import Home from "../components/Home";
 import Login from "../components/Login";
 import Password from "../components/Password";
 import Profile from "../components/Profile";
-import Rgister from "../components/Register";
+import Register from "../components/Register";
+import RegisterList from "../components/RegisterList";
 import Welcome from "../components/Welcome";
+import store from '../store';
 
 
 Vue.use(VueRouter);
@@ -17,7 +19,7 @@ const router = new VueRouter({
     routes: [
         {
             path: '/',
-            redirect: '/login'
+            redirect: '/home'
         },
         {
             path: '/login',
@@ -36,19 +38,38 @@ const router = new VueRouter({
             children : [
                 {
                     path : '/welcome',
-                    component : Welcome
+                    component : Welcome,
+                    meta: {
+                        auth: true,
+                    }
                 },
                 {
                     path : '/profile',
-                    component : Profile
+                    component : Profile,
+                    meta: {
+                        auth: true,
+                    }
                 },
                 {
                     path : '/password',
-                    component : Password
+                    component : Password,
+                    meta: {
+                        auth: true,
+                    }
                 },
                 {
                     path : '/register',
-                    component : Rgister
+                    component : Register,
+                    meta: {
+                        auth: true,
+                    }
+                },
+                {
+                    path : '/registerList',
+                    component : RegisterList,
+                    meth: {
+                        auth: true,
+                    }
                 }
             ]
         }
@@ -68,5 +89,9 @@ const router = new VueRouter({
 //     // 给页面放行
 //     next();
 // })
+
+router.afterEach((to, from, next) => {
+    console.log(store.state.user);
+})
 
 export default router;

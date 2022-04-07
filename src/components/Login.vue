@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import login from "../api/user";
+import { login } from "../api/user";
 import { validSchoolNumber } from "../utils/validate";
 export default {
   name: "Login",
@@ -60,14 +60,6 @@ export default {
         callback();
       }
     };
-    // password校验
-    const validatePassword = (rule, value, callback) => {
-      if (!validPassward(value)) {
-        callback(new Error("请输入正确格式的密码"));
-      } else {
-        callback();
-      }
-    };
     return {
       formInfo: {
         schoolNumber: "",
@@ -75,7 +67,7 @@ export default {
       },
       formRules: {
         schoolNumber: [{ validator: validateSchoolNumber, trigger: "blur" }],
-        password: [{ validator: validatePassword, trigger: "blur" }],
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }],
       },
     };
   },
@@ -84,23 +76,40 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           // 信息校验后通过发送登录请求
-          login(this.formInfo).then((response) => {
-            // 登录成功，保存用户信息，并跳转到主页
-            if (response.data.success === "1") {
-              this.$store.dispatch("user/login", {
-                type: response.data.type,
-                name: response.data.name,
-                schoolNumber: this.formInfo.schoolNumber,
-              });
-              this.$router.push("/");
-            } else {
-              this.$message.error("密码错误!");
-            }
-          }).catch((err) => {
-            // 请求失败
-            this.$message.error("登录请求失败!");
-          });
+          login(this.formInfo)
+            .then((response) => {
+              // 登录成功，保存用户信息
+              if (response.data.success === "1") {
+                this.$store.dispatch("user/login", {
+                  type: response.data.type,
+                  name: response.data.username,
+                  schoolNumber: response.data.schoolNumber,
+                });
+                // 如果第一次登录，提醒修改密码
+                if (response.data.first_login === "1") {
+                  this.$router.push("/password");
+                  this.tips();
+                } else {
+                  this.$router.push("/");
+                }
+              } else {
+                this.$message.error("密码错误!");
+              }
+            })
+            .catch((err) => {
+              // 请求失败
+              this.$message.error("登录请求失败!");
+            });
         }
+      });
+    },
+    tips() {
+      // 首次登录提醒修改密码
+      this.$alert("首次登录请修改密码", "", {
+        confirmButtonText: "确定",
+        callback: (action) => {
+          this.$router.push("/password");
+        },
       });
     },
   },

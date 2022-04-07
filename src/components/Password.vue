@@ -53,8 +53,7 @@
 
     <el-form-item>
       <el-button type="primary" @click="submitForm('passwordForm')">
-        修改密码</el-button
-      >
+        修改密码</el-button>
       <el-button @click="resetForm('passwordForm')">取消</el-button>
     </el-form-item>
   </el-form>
@@ -85,8 +84,8 @@ export default {
     };
     return {
       formInfo: {
-        name : this.$store.state.user.name,
-        schoolNumber : this.$store.state.user.schoolNumber,
+        name: this.$store.state.user.name,
+        schoolNumber: this.$store.state.user.schoolNumber,
         oldPassword: "",
         newPassword: "",
         confirmPassword: "",
@@ -118,17 +117,22 @@ export default {
           })
             .then((response) => {
               // 成功修改
+              if(response.data.success === "1") {
               this.$message.success("密码修改成功!");
+              } else {
+                this.$message.error("密码修改失败!");
+              }
             })
             .catch((error) => {
-              this.$message.error("密码修改失败!" + error.message);
+              // this.$message.error("密码修改失败!" + error.message);
+              this.$message.info("密码修改失败!");
             });
         }
       });
     },
     resetForm(formName) {
       this.$refs[formName].resetFields();
-    }
+    },
   },
 };
 </script>
